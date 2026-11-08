@@ -7,6 +7,7 @@ from config import FIXED_SEED
 from src.char_distributions import draw_interaction_plots
 from src.char_distributions import draw_rating_distribution
 from src.split_data import temporal_split
+from src.run_baselines import run_baselines
 
 import pandas as pd
 import numpy as np
@@ -41,3 +42,7 @@ print(f"Size of test data: {test_data.shape[0]}")
 # Check that the sum of splits equals the original rating data size
 print(f"Total size of splits: {train_data.shape[0] + validate_data.shape[0] + test_data.shape[0]}, size of ratings: {ratings_df.shape[0]}" )
 
+# Baselines: tune ItemKNN on validation, then evaluate every baseline on the test set
+baseline_results, knn_tuning = run_baselines(train_data, validate_data, test_data, users_df.user_id, movies_df.movie_id)
+knn_tuning.to_csv("results/knn_tuning.csv", index=False)
+baseline_results.to_csv("results/results.csv", index=False)
