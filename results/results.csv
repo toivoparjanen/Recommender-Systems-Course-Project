@@ -1,0 +1,4 @@
+Model,Variant / settings,Similarity,k,Precision@10,Recall@10,NDCG@10,Catalogue coverage,Seed,Notes
+ItemKNN,"k and similarity tuned on validation; threshold=0.3, gamma=50",jaccard,5,0.12306397306397306,0.03712532309045279,0.12413295366825317,0.15735256245171259,256,"trained on train+validation, evaluated on 1188 test users"
+MostPopular,"all-time popularity, all ratings counted",,,0.19183501683501683,0.052516489885309506,0.20704578823929318,0.03785732680916817,256,"trained on train+validation, evaluated on 1188 test users"
+MostPopular,"all-time popularity, only ratings >= 4 counted",,,0.20092592592592592,0.05730911815442133,0.21827682493489844,0.03631212979654906,256,"trained on train+validation, evaluated on 1188 test users"
