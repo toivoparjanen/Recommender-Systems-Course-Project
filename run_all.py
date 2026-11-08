@@ -6,9 +6,10 @@ Main file for running the pipeline
 from config import FIXED_SEED
 from src.char_distributions import draw_interaction_plots
 from src.char_distributions import draw_rating_distribution
+from src.split_data import temporal_split
 
 import pandas as pd
-
+import numpy as np
 
 # loading the data
 
@@ -30,7 +31,13 @@ print(f"Number of ratings: {ratings_df.shape[0]}")
 draw_interaction_plots(ratings_df)
 draw_rating_distribution(ratings_df)
 
+# Split the data into test/validation/test splits
+train_data, test_data, validate_data = temporal_split(ratings_df)
 
+print(f"Size of training data: {train_data.shape[0]}")
+print(f"Size of validation data: {validate_data.shape[0]}")
+print(f"Size of test data: {test_data.shape[0]}")
 
-
+# Check that the sum of splits equals the original rating data size
+print(f"Total size of splits: {train_data.shape[0] + validate_data.shape[0] + test_data.shape[0]}, size of ratings: {ratings_df.shape[0]}" )
 
